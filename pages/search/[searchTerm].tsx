@@ -28,7 +28,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
   return (
     <>
       <Head>
-        <title>Results for {searchTerm}</title>
+        <title>Searching for {searchTerm}</title>
       </Head>
       <div className="w-full">
         <div className="flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full">
@@ -39,7 +39,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
             Accounts
           </p>
           <p
-            className={`text-xl font-semibold cursor-pointer mt-2 ${videos}`}
+            className={`text-xl font-semibold cursor-pointer mt-2 ${isVideos}`}
             onClick={() => setIsAccounts(false)}
           >
             Videos

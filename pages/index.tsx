@@ -5,18 +5,22 @@ import NoResults from "../components/NoResults";
 import VideoCard from "../components/VideoCard";
 import { BASE_URL } from "../utils";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 interface IProps {
   videos: Video[];
 }
 
 const Home = ({ videos }: IProps) => {
-  console.log(videos);
+  const router = useRouter();
+  const { topic }: any = router.query;
 
   return (
     <>
       <Head>
-        <title>TikTik</title>
+        <title>
+          {topic ? `${topic[0].toUpperCase() + topic.slice(1)}` : "TikTik"}
+        </title>
       </Head>
       <div className="flex flex-col gap-10 videos h-full">
         {videos.length ? (
@@ -24,7 +28,9 @@ const Home = ({ videos }: IProps) => {
             <VideoCard post={video} key={video._id} />
           ))
         ) : (
-          <NoResults text={"No videos"} />
+          <NoResults
+            text={topic ? `No videos for the ${topic} topic` : "No videos"}
+          />
         )}
       </div>
     </>
