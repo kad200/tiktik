@@ -10,6 +10,7 @@ import { client } from "../utils/client";
 
 import { topics } from "../utils/constants";
 import { BASE_URL } from "../utils";
+import Head from "next/head";
 
 const Upload = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -73,111 +74,116 @@ const Upload = () => {
   };
 
   return (
-    <div className="flex w-full h-full absolute left-0 top:[60px] mb-10 pt-10 lg:pt-20 bg-[#f8f8f8] justify-center">
-      <div className="bg-white rounded-lg xl:h-[80vh] w-[60%] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
-        <div>
+    <>
+      <Head>
+        <title>Upload your video</title>
+      </Head>
+      <div className="flex w-full h-full absolute left-0 top:[60px] mb-10 pt-10 lg:pt-20 bg-[#f8f8f8] justify-center">
+        <div className="bg-white rounded-lg xl:h-[80vh] w-[60%] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
           <div>
-            <p className="text-2xl font-bold">Upload Video</p>
-            <p className="text-md text-gray-400 mt-1">
-              Post a video to your account
-            </p>
-          </div>
-          <div className="border-dashed rouded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100">
-            {isLoading ? (
-              <p>Uploading...</p>
-            ) : (
-              <div>
-                {videoAsset ? (
-                  <div>
-                    <video
-                      src={videoAsset.url}
-                      loop
-                      controls
-                      className="rounded-xl h-[450px] mt-16 bg-black"
-                    ></video>
-                  </div>
-                ) : (
-                  <label className="cursor-pointer">
-                    <div className="flex flex-col items-center justify-center h-full">
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="font-bold text-xl">
-                          <FaCloudUploadAlt className="text-gray-300 text-6xl" />
-                        </p>
-                        <p className="text-xl font-semibold">Upload video</p>
-                      </div>
-                      <p className="text-gray-400 text-center mt-10 text-small leading-10">
-                        MP4 or WebM or ogg <br />
-                        720x1280 or higher <br />
-                        Up to 10 minutes <br />
-                        Less than 2GB
-                      </p>
-                      <p className="bg-[#f51997] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none">
-                        Select File
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      name="upload-video"
-                      onChange={uploadVideo}
-                      className="w-0 h-0"
-                    />
-                  </label>
-                )}
-              </div>
-            )}
-            {wrongFileType && (
-              <p className="text-center text-xl text-red-400 font-semibold mt-4 w-[250px]">
-                Please select a video file
+            <div>
+              <p className="text-2xl font-bold">Upload Video</p>
+              <p className="text-md text-gray-400 mt-1">
+                Post a video to your account
               </p>
-            )}
+            </div>
+            <div className="border-dashed rouded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100">
+              {isLoading ? (
+                <p>Uploading...</p>
+              ) : (
+                <div>
+                  {videoAsset ? (
+                    <div>
+                      <video
+                        src={videoAsset.url}
+                        loop
+                        controls
+                        className="rounded-xl h-[450px] mt-16 bg-black"
+                      ></video>
+                    </div>
+                  ) : (
+                    <label className="cursor-pointer">
+                      <div className="flex flex-col items-center justify-center h-full">
+                        <div className="flex flex-col items-center justify-center">
+                          <p className="font-bold text-xl">
+                            <FaCloudUploadAlt className="text-gray-300 text-6xl" />
+                          </p>
+                          <p className="text-xl font-semibold">Upload video</p>
+                        </div>
+                        <p className="text-gray-400 text-center mt-10 text-small leading-10">
+                          MP4 or WebM or ogg <br />
+                          720x1280 or higher <br />
+                          Up to 10 minutes <br />
+                          Less than 2GB
+                        </p>
+                        <p className="bg-[#f51997] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none">
+                          Select File
+                        </p>
+                      </div>
+                      <input
+                        type="file"
+                        name="upload-video"
+                        onChange={uploadVideo}
+                        className="w-0 h-0"
+                      />
+                    </label>
+                  )}
+                </div>
+              )}
+              {wrongFileType && (
+                <p className="text-center text-xl text-red-400 font-semibold mt-4 w-[250px]">
+                  Please select a video file
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-3 pb-10">
-          <label className="text-md font-medium">Caption</label>
-          <input
-            type="text"
-            value={caption}
-            onChange={(e) => {
-              setCaption(e.target.value);
-            }}
-            className="rounded outline-none text-md border-2 borded-gray-200 p-2"
-          />
-          <label className="text-md font-medium">Choose a category</label>
-          <select
-            onChange={(e) => {
-              setCategory(e.target.value);
-            }}
-            className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-4 rounded cursor-pointer"
-          >
-            {topics.map((topic) => (
-              <option
-                key={topic.name}
-                value={topic.name}
-                className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
+          <div className="flex flex-col gap-3 pb-10">
+            <label className="text-md font-medium">Caption</label>
+            <input
+              type="text"
+              value={caption}
+              onChange={(e) => {
+                setCaption(e.target.value);
+              }}
+              className="rounded outline-none text-md border-2 borded-gray-200 p-2"
+            />
+            <label className="text-md font-medium">Choose a category</label>
+            <select
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+              className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-4 rounded cursor-pointer"
+            >
+              {topics.map((topic) => (
+                <option
+                  key={topic.name}
+                  value={topic.name}
+                  className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
+                >
+                  {topic.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-6 mt-10">
+              <button
+                type="button"
+                className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
+                onClick={() => {}}
               >
-                {topic.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-6 mt-10">
-            <button
-              type="button"
-              className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
-              onClick={() => {}}
-            >
-              Discard
-            </button>
-            <button
-              type="button"
-              className="bg-[#f51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
-              onClick={handlePost}
-            >
-              Post
-            </button>
+                Discard
+              </button>
+              <button
+                type="button"
+                className="bg-[#f51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
+                onClick={handlePost}
+              >
+                Post
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

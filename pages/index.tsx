@@ -4,6 +4,7 @@ import { Video } from "../types";
 import NoResults from "../components/NoResults";
 import VideoCard from "../components/VideoCard";
 import { BASE_URL } from "../utils";
+import Head from "next/head";
 
 interface IProps {
   videos: Video[];
@@ -11,14 +12,22 @@ interface IProps {
 
 const Home = ({ videos }: IProps) => {
   console.log(videos);
+
   return (
-    <div className="flex flex-col gap-10 videos h-full">
-      {videos.length ? (
-        videos.map((video: Video) => <VideoCard post={video} key={video._id} />)
-      ) : (
-        <NoResults text={"No videos"} />
-      )}
-    </div>
+    <>
+      <Head>
+        <title>TikTik</title>
+      </Head>
+      <div className="flex flex-col gap-10 videos h-full">
+        {videos.length ? (
+          videos.map((video: Video) => (
+            <VideoCard post={video} key={video._id} />
+          ))
+        ) : (
+          <NoResults text={"No videos"} />
+        )}
+      </div>
+    </>
   );
 };
 
