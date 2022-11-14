@@ -7,8 +7,6 @@ import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 
 import { Video } from "../types";
-import Head from "next/head";
-import UserAnchor from "./UserAnchor";
 
 interface IProps {
   post: Video;

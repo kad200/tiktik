@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import { topics } from "../utils/constants";
-import Head from "next/head";
 
 const Discover = () => {
   const router = useRouter();

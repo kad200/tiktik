@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import axios from "axios";
+import Head from "next/head";
+import { useRouter } from "next/router";
+
 import { Video } from "../types";
 import NoResults from "../components/NoResults";
 import VideoCard from "../components/VideoCard";
 import { BASE_URL } from "../utils";
-import Head from "next/head";
-import { useRouter } from "next/router";
 
 interface IProps {
   videos: Video[];

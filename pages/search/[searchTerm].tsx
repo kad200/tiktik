@@ -4,13 +4,13 @@ import { GoVerified } from "react-icons/go";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import VideoCard from "../../components/VideoCard";
 import NoResults from "../../components/NoResults";
 import { IUser, Video } from "../../types";
 import { BASE_URL } from "../../utils";
 import useAuthStore from "../../store/authStore";
-import Head from "next/head";
 
 const Search = ({ videos }: { videos: Video[] }) => {
   const [isAccounts, setIsAccounts] = useState(false);

@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+
 import { client } from "../../../utils/client";
 import { allPostsQuery } from "../../../utils/queries";
 

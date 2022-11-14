@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import Head from "next/head";
 import { SanityAssetDocument } from "@sanity/client";
 
 import useAuthStore from "../store/authStore";
 import { client } from "../utils/client";
-
 import { topics } from "../utils/constants";
 import { BASE_URL } from "../utils";
-import Head from "next/head";
 
 const Upload = () => {
   const [isLoading, setIsLoading] = useState(false);
